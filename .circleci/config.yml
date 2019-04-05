@@ -18,3 +18,9 @@ jobs:
       - run:
           name: Test
           command: cargo test
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - test
