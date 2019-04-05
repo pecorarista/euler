@@ -7,11 +7,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Version
+          name: Show version information
           command: |
             rustup --version
             rustc --version
             cargo --version
+      - run:
+          name: Install dependencies
+          command: rustup component add rustfmt
+      - run:
+          name: Format
+          command: cargo rustfmt -- --check
       - run:
           name: Build
           command: cargo build
