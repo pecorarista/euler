@@ -1,5 +1,5 @@
 pub fn q1() -> u64 {
-    (1..1000).filter(|x| (x % 3 == 0) || (x % 5 == 0)).sum()
+    (1..1000).filter(|x| x % 3 == 0 || x % 5 == 0).sum()
 }
 
 pub fn fibonacci(i: u64) -> u64 {
