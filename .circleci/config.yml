@@ -8,10 +8,10 @@ jobs:
       - checkout
       - run:
           name: Save rustup version
-          command: rustup --version > ~/.rustup-version
+          command: rustup --version | tee ~/.rustup-version
       - run:
           name: Save rustc version
-          command: rustc --version > ~/.rustc-version
+          command: rustc --version | tee ~/.rustc-version
       - restore_cache:
           keys:
             - rustup-{{ checksum "~/.rustup-version" }}
