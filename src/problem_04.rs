@@ -40,7 +40,7 @@ mod tests {
     }
 
     #[test]
-    fn is_palindromic_3_not() {
+    fn is_not_palindromic_3() {
         assert!(!is_palindromic(123));
     }
 
@@ -50,7 +50,7 @@ mod tests {
     }
 
     #[test]
-    fn is_palindromic_4_not() {
+    fn is_not_palindromic_4() {
         assert!(!is_palindromic(2323));
     }
 
