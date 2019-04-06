@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/rust:1.33.0-stretch
+      - image: rust:1.33.0-stretch
     steps:
       - checkout
       - run:
