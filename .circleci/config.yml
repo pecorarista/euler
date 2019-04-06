@@ -3,12 +3,15 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/rust:latest
+      - image: circleci/rust:1.33.0-stretch
     steps:
       - checkout
       - run:
           name: Save rustup version
           command: rustup --version > ~/.rustup-version
+      - run:
+          name: Save rustc version
+          command: rustc --version > ~/.rustc-version
       - restore_cache:
           keys:
             - rustup-{{ checksum "~/.rustup-version" }}
@@ -24,12 +27,12 @@ jobs:
           command: cargo fmt -- --check
       - restore_cache:
           keys:
-            - cargo-lock-{{ checksum "Cargo.lock" }}
+            - cargo-lock-{{ checksum "~/.rustc-version" }}-{{ checksum "Cargo.lock" }}
       - run:
           name: Build
           command: cargo build
       - save_cache:
-          key: cargo-lock-{{ checksum "Cargo.lock" }}
+          key: cargo-lock-{{ checksum "~/.rustc-version" }}-{{ checksum "Cargo.lock" }}
           paths:
             - /usr/local/cargo/registry
       - run:
