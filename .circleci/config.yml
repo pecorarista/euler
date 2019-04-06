@@ -25,6 +25,9 @@ jobs:
       - run:
           name: Format
           command: cargo fmt -- --check
+      - run:
+          name: Generate a lockfile
+          command: cargo generate-lockfile
       - restore_cache:
           keys:
             - cargo-lock-{{ checksum "~/.rustc-version" }}-{{ checksum "Cargo.lock" }}
@@ -37,7 +40,7 @@ jobs:
             - /usr/local/cargo/registry
       - run:
           name: Check
-          command: cargo clippy --all-targets --all-features -- -D warinigs
+          command: cargo clippy --all-targets --all-features -- -D warnings
       - run:
           name: Test
           command: cargo test
