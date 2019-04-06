@@ -13,7 +13,7 @@ jobs:
           name: Install dependencies
           command: rustup component add rustfmt clippy
       - save_cache:
-          key: rustup-{{ checksum: "~/.rustup-version" }}
+          key: rustup-{{ checksum "~/.rustup-version" }}
           paths:
             - /usr/local/rustup
       - run:
