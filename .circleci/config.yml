@@ -9,6 +9,9 @@ jobs:
       - run:
           name: Save rustup version
           command: rustup --version > ~/.rustup-version
+      - restore_cache:
+          keys:
+            - rustup-{{ checksum "~/.rustup-version" }}
       - run:
           name: Install dependencies
           command: rustup component add rustfmt clippy
@@ -26,6 +29,7 @@ jobs:
           name: Build
           command: cargo build
       - save_cache:
+          key: cargo-lock-{{ checksum "Cargo.lock" }}
           paths:
             - /usr/local/cargo/registry
       - run:
