@@ -7,20 +7,30 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Show version information
-          command: |
-            rustup --version
-            rustc --version
-            cargo --version
+          name: Save rustup version
+          command: rustup --version > ~/.rustup-version
       - run:
           name: Install dependencies
-          command: rustup component add rustfmt
+          command: rustup component add rustfmt clippy
+      - save_cache:
+          key: rustup-{{ checksum: "~/.rustup-version" }}
+          paths:
+            - /usr/local/rustup
       - run:
           name: Format
-          command: cargo rustfmt -- --check
+          command: cargo fmt -- --check
+      - restore_cache:
+          keys:
+            - cargo-lock-{{ checksum "Cargo.lock" }}
       - run:
           name: Build
           command: cargo build
+      - save_cache:
+          paths:
+            - /usr/local/cargo/registry
+      - run:
+          name: Check
+          command: cargo clippy --all-target --all-features -- -D warinigs
       - run:
           name: Test
           command: cargo test

@@ -3,7 +3,7 @@ pub fn q1() -> u32 {
 }
 
 pub fn fibonacci(i: u32) -> u32 {
-    if i == 0 || i == 1 {
+    if (i == 0) || (i == 1) {
         1
     } else {
         fibonacci(i - 1) + fibonacci(i - 2)
@@ -13,7 +13,7 @@ pub fn fibonacci(i: u32) -> u32 {
 pub fn q2() -> u32 {
     (1u32..)
         .take_while(|&i| fibonacci(i) <= 4_000_000)
-        .map(|i| fibonacci(i))
+        .map(fibonacci)
         .filter(|n| n % 2 == 0)
         .sum()
 }

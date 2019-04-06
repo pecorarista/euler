@@ -5,7 +5,7 @@ mod tests {
 
     #[test]
     fn test_q1() {
-        assert_eq!(euler::q1(), 233168);
+        assert_eq!(euler::q1(), 233_168);
     }
 
     #[test]
@@ -15,7 +15,7 @@ mod tests {
 
     #[test]
     fn test_q2() {
-        assert_eq!(euler::q2(), 4613732);
+        assert_eq!(euler::q2(), 4_613_732);
     }
 
 }
