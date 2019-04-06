@@ -34,7 +34,7 @@ jobs:
             - /usr/local/cargo/registry
       - run:
           name: Check
-          command: cargo clippy --all-target --all-features -- -D warinigs
+          command: cargo clippy --all-targets --all-features -- -D warinigs
       - run:
           name: Test
           command: cargo test
