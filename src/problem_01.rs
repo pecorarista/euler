@@ -6,6 +6,7 @@ pub fn solve() -> u64 {
 mod tests {
     use super::*;
 
+
     #[test]
     fn check() {
         assert_eq!(solve(), 233_168);
